@@ -1,8 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import React from "react";
 
-const App = () => {
+const App: React.FC  = () => {
   return (
     <div className="p-4">
       <div className="flex gap-2 items-center">
