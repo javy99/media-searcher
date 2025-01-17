@@ -1,16 +1,21 @@
-import { Button } from "@/components/ui/button";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
 import React from "react";
+import { useSearch } from "./hooks";
+import { Loading, SearchBar, SearchResults } from "./components";
 
 const App: React.FC  = () => {
+  const { searchTerm, setSearchTerm, results, loading, error, search } = useSearch();
+
   return (
     <div className="p-4">
-      <div className="flex gap-2 items-center">
-        <Label htmlFor="search">Search</Label>
-        <Input id="search" type="search" placeholder="Search here..." />
-      </div>
-      <Button className="mt-4">Search</Button>
+      <SearchBar
+        searchItem={searchTerm}
+        setSearchItem={setSearchTerm}
+        onSearch={search}
+        loading={loading}
+      />
+      {loading && <Loading />}
+      {error && <p className="text-red-500 mt-4">{error}</p>}
+      {!loading && <SearchResults results={results} />}
     </div>
   );
 }
