@@ -4,6 +4,7 @@ import { Loading, SearchBar, SearchResults } from "./components";
 
 const App: React.FC  = () => {
   const { searchTerm, setSearchTerm, results, loading, error, search } = useSearch();
+  console.log({search});
 
   return (
     <div className="p-4">
