@@ -1,6 +1,6 @@
 import { fetchSearchResults } from "@/services/iTunesApi";
 import { SearchOptions, SearchResult } from "@/types";
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 const useSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -8,9 +8,15 @@ const useSearch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const search = async (options?: Omit<SearchOptions, "term">) => {
+  const search = useCallback(async (options?: Omit<SearchOptions, "term">) => {
     setLoading(true);
     setError(null);
+
+     if (!searchTerm) {
+       setResults([]);
+       setLoading(false);
+       return;
+     }
 
     const searchResults = await fetchSearchResults({
       term: searchTerm,
@@ -25,7 +31,7 @@ const useSearch = () => {
       setResults([]);
     }
     setLoading(false);
-  };
+  }, [searchTerm]);
 
   // Debounced search
   useEffect(() => {
@@ -38,7 +44,7 @@ const useSearch = () => {
     }, 500);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [searchTerm]);
+  }, [searchTerm, search]);
 
   return {
     searchTerm,

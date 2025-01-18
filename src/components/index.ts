@@ -1,3 +1,4 @@
+export { default as Footer } from "./Footer";
 export { default as Loading } from "./Loading";
 export { default as ModeToggle } from "./ModeToggle";
 export { default as Navbar } from "./Navbar";
