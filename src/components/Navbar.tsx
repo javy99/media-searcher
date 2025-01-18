@@ -7,7 +7,7 @@ const Navbar: React.FC = () => {
   return (
     <nav className="w-full px-5 py-3 flex justify-between items-center border-b dark:border-gray-700 bg-white dark:bg-black">
       <div className="flex items-center gap-2">
-        <h1 className="text-2xl font-bold text-black dark:text-white">
+        <h1 className="text-2xl font-bold text-black dark:text-white cursor-pointer">
           Media Searcher
         </h1>
         <ScanSearch className="!h-8 !w-8 " />
