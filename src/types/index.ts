@@ -1,14 +1,17 @@
 export interface SearchResult {
-  trackId: number;
+  wrapperType: string;
+  explicitness: string;
+  kind: string;
   trackName: string;
   artistName: string;
   collectionName: string;
+  collectionCensoredName: string;
   artworkUrl100: string;
-  collectionPrice: number;
-  trackPrice: number;
-  collectionType: string;
-  primaryGenreName: string;
-  releaseDate: string;
+  artworkUrl60: string;
+  collectionViewUrl: string;
+  trackViewUrl: string;
+  previewUrl: string;
+  trackTimeMillis: number;
 }
 
 export interface ITunesApiResponse {

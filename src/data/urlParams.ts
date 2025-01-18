@@ -1,10 +1,27 @@
 
-import { getAlpha2Codes } from "i18n-iso-countries";
+// import { getAlpha2Codes } from "i18n-iso-countries";
 import { mediaTypeEntities } from "./mediaTypeEntities";
 import { mediaTypeAttributes } from "./mediaTypeAttributes";
+import countries from "i18n-iso-countries/langs/en.json";
 
 // Get all two-letter country codes: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
-const countryCodes = Object.keys(getAlpha2Codes());
+// const countryCodes = Object.keys(getAlpha2Codes());
+const countryCodes = Object.entries(countries).map(([code, name]) => ({
+  code,
+  name,
+}));
+
+export const countryObject = Object.entries(countryCodes[1].name).reduce(
+  (acc, [code, country]) => {
+    acc[code] = country;
+    return acc;
+  },
+  {}
+);
+
+export const countryNames = Object.values(countryObject);
+
+export const countryCodesList = Object.keys(countryObject);
 
 export const urlParams = {
   term: {
@@ -17,7 +34,7 @@ export const urlParams = {
       "The two-letter country code for the store you want to search.",
     required: true,
     default: "US",
-    validValues: countryCodes,
+    validValues: countryCodes[0],
   },
   media: {
     description: "The media type you want to search for.",

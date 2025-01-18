@@ -1,6 +1,6 @@
 import { fetchSearchResults } from "@/services/iTunesApi";
 import { SearchResult } from "@/types";
-import { useState } from "react"
+import { useEffect, useState } from "react"
 
 interface SearchOptions {
   term: string;
@@ -20,20 +20,37 @@ const useSearch = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const search = async (options?:Omit<SearchOptions, "term">) => {
+  const search = async (options?: Omit<SearchOptions, "term">) => {
     setLoading(true);
     setError(null);
 
-    const searchResults = await fetchSearchResults({term: searchTerm, ...options, explicit: options?.explicit ?? "No"});
+    const searchResults = await fetchSearchResults({
+      term: searchTerm,
+      explicit: options?.explicit ?? "No",
+      ...options,
+    });
 
     if (searchResults) {
       setResults(searchResults);
     } else {
-      setError('Failed to fetch search results.');
+      setError("Failed to fetch search results.");
       setResults([]);
     }
     setLoading(false);
-  }
+  };
+
+  // Debounced search
+  useEffect(() => {
+    const delayDebounceFn = setTimeout(() => {
+      if (searchTerm) {
+        search();
+      } else {
+        setResults([]);
+      }
+    }, 500);
+
+    return () => clearTimeout(delayDebounceFn);
+  }, [searchTerm]);
 
   return {
     searchTerm,
@@ -42,7 +59,7 @@ const useSearch = () => {
     loading,
     error,
     search,
-  }
+  };
 }
 
 export default useSearch;
