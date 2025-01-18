@@ -4,7 +4,6 @@ import { Input } from "@/components/ui/input";
 import { SearchIcon } from "lucide-react";
 import SearchComponent from "./SearchComponent";
 
-
 interface SearchBarProps {
   searchItem: string;
   setSearchItem: (searchItem: string) => void;
@@ -59,7 +58,7 @@ const SearchBar: React.FC<SearchBarProps> = ({
           value={searchItem}
           onChange={handleInputChange}
           onKeyDown={handleKeyDown}
-          className="pl-12 py-6"
+          className="pl-12 py-6 focus:border-black dark:focus:border-white transition-all"
         />
         <Button
           onClick={handleSearch}

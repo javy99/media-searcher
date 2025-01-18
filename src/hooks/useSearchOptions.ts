@@ -1,17 +1,5 @@
-// hooks/useSearchOptions.tsx
 import { useState, useEffect } from "react";
-import { MediaType } from "@/data";
-
-export interface SearchOptionsState {
-  media: MediaType;
-  entity: string | undefined;
-  country: string;
-  attribute: string;
-  limit: number | undefined;
-  lang: string;
-  version: number | undefined;
-  explicit: "Yes" | "No" | undefined;
-}
+import { MediaType, SearchOptionsState } from "@/types";
 
 const useSearchOptions = (initialMedia: MediaType = "all") => {
   const [options, setOptions] = useState<SearchOptionsState>({

@@ -1,18 +1,6 @@
 import { fetchSearchResults } from "@/services/iTunesApi";
-import { SearchResult } from "@/types";
+import { SearchOptions, SearchResult } from "@/types";
 import { useEffect, useState } from "react"
-
-interface SearchOptions {
-  term: string;
-  country?: string;
-  media?: string;
-  entity?: string;
-  attribute?: string;
-  limit?: number;
-  lang?: string;
-  version?: number;
-  explicit?: "Yes" | "No";
-}
 
 const useSearch = () => {
   const [searchTerm, setSearchTerm] = useState("");

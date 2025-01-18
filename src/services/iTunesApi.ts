@@ -29,11 +29,8 @@ const buildQueryString = (options: SearchOptions): string => {
 export async function fetchSearchResults(options: SearchOptions): Promise<SearchResult[] | null> {
   try {
     const queryString = buildQueryString(options);
-    console.log({queryString});
     const FINAL_URL = `${BASE_URL}?${queryString}`;
-    console.log({FINAL_URL});
     const response = await fetch(FINAL_URL);
-    console.log({response});
 
     if (!response.ok) {
       throw new Error(`HTTP error! Status: ${response.status}`);

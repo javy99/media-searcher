@@ -1,31 +1,28 @@
+import countries from "i18n-iso-countries/langs/en.json";
+import { MediaType } from "@/types";
 
-export * from "./mediaTypeAttributes";
-export * from "./mediaTypeEntities";
-export * from "./urlParams";
+/*=====================================================================================*/
+// Get all two-letter country codes: https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2
+const countryCodes = Object.entries(countries).map(([code, name]) => ({
+  code,
+  name,
+}));
 
-export type MediaType =
-  | "movie"
-  | "podcast"
-  | "music"
-  | "musicVideo"
-  | "audiobook"
-  | "shortFilm"
-  | "tvShow"
-  | "software"
-  | "all"
-  | "ebook";
+export const countryObject: Record<string, string> = Object.entries(
+  countryCodes[1].name
+).reduce((acc, [code, country]) => {
+  acc[code] = Array.isArray(country) ? country[0] : country;
+  return acc;
+}, {} as Record<string, string>);
 
-export interface Option {
-  label: string;
-  value: string;
-}
-export interface SelectOptions {
-  media: MediaType;
-  entities: Option[];
-  attributes: string[];
-}
+export const countryNames: string[] = Object.values(countryObject);
+/*=====================================================================================*/
 
-export const mediaTypeEntities: Record<MediaType, Option[]> = {
+/*=====================================================================================*/
+export const mediaTypeEntities: Record<
+  MediaType,
+  { label: string; value: string }[]
+> = {
   movie: [
     { label: "Movie", value: "movie" },
     { label: "Movie Artist", value: "movieArtist" },
@@ -76,6 +73,8 @@ export const mediaTypeEntities: Record<MediaType, Option[]> = {
     { label: "All Tracks", value: "allTrack" },
   ],
 };
+
+/*=====================================================================================*/
 
 export const mediaTypeAttributes: Record<MediaType, string[]> = {
   movie: [
@@ -167,6 +166,11 @@ export const mediaTypeAttributes: Record<MediaType, string[]> = {
   ebook: [],
 };
 
+/*=====================================================================================*/
+
+
+
+/*=====================================================================================*/
 export const urlParams = {
   term: {
     description: "The URL-encoded text string you want to search for.",
@@ -178,7 +182,7 @@ export const urlParams = {
       "The two-letter country code for the store you want to search.",
     required: true,
     default: "US",
-    validValues: 'countryCodes[0]',
+    validValues: countryCodes[0],
   },
   media: {
     description: "The media type you want to search for.",
@@ -222,7 +226,9 @@ export const urlParams = {
   explicit: {
     description: "A flag for explicit content.",
     required: false,
-    default: "No",
+    default: "Yes",
     validValues: ["Yes", "No"],
   },
 };
+/*=====================================================================================*/
+
