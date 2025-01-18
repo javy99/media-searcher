@@ -29,13 +29,42 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ onSearch }) => {
 
    // Media Types and Values for Select Inputs
    const mediaTypes = Object.keys(mediaTypeAttributes) as MediaType[];
-   const limitOptions = [10, 25, 50, 100, 200];
-   const languageOptions = ["en_us", "ja_jp"];
+   const limitOptions = Array.from({ length: 200 }, (_, i) => i + 1);
+   const languageOptions = {
+     en_us: "English",
+     ja_jp: "Japanese",
+     fr_fr: "French",
+     es_es: "Spanish",
+     de_de: "German",
+     it_it: "Italian",
+     pt_pt: "Portuguese",
+     ru_ru: "Russian",
+     zh_cn: "Chinese",
+     ko_kr: "Korean",
+     ar_sa: "Arabic",
+     hi_in: "Hindi",
+     tr_tr: "Turkish",
+     pl_pl: "Polish",
+     nl_nl: "Dutch",
+     sv_se: "Swedish",
+     no_no: "Norwegian",
+     da_dk: "Danish",
+     fi_fi: "Finnish",
+     cs_cz: "Czech",
+     el_gr: "Greek",
+     ro_ro: "Romanian",
+     hu_hu: "Hungarian",
+     th_th: "Thai",
+     id_id: "Indonesian",
+     ms_my: "Malay",
+     he_il: "Hebrew",
+     vi_vn: "Vietnamese",
+   };
    const versionOptions = [1, 2];
    const explicitOptions = ["Yes", "No"];
 
   return (
-    <div className="flex gap-4">
+    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 w-full">
       {/* Media Type Select */}
       <SelectInput
         label="Media Type"
@@ -89,7 +118,10 @@ const SearchComponent: React.FC<SearchComponentProps> = ({ onSearch }) => {
       <SelectInput
         label="Language"
         value={options.lang}
-        options={languageOptions}
+        options={Object.entries(languageOptions).map(([code, name]) => ({
+          label: name,
+          value: code,
+        }))}
         onChange={(value) => handleOptionChange("lang", value)}
         placeholder="Language"
       />

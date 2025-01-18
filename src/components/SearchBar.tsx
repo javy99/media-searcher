@@ -49,8 +49,8 @@ const SearchBar: React.FC<SearchBarProps> = ({
 
   return (
     <div className="flex flex-col gap-2 bg-white dark:bg-black p-5">
-      <div className="flex items-center gap-2 relative">
-        <SearchIcon className="h-5 w-5 text-black dark:text-white absolute left-3" />
+      <div className="flex flex-col sm:flex-row items-center gap-2 relative">
+        <SearchIcon className="h-5 w-5 text-black dark:text-white absolute left-3 top-3.5" />
         <Input
           id="search"
           type="search"
@@ -60,19 +60,21 @@ const SearchBar: React.FC<SearchBarProps> = ({
           onKeyDown={handleKeyDown}
           className="pl-12 py-6 focus:border-black dark:focus:border-white transition-all"
         />
-        <Button
-          onClick={handleSearch}
-          disabled={loading}
-          className="bg-black dark:bg-white text-white dark:text-black font-bold py-6 text-base"
-        >
-          Search
-        </Button>
-        <Button
-          onClick={toggleAdvancedOptions} // Use the new toggle function here
-          className="bg-black dark:bg-white text-white dark:text-black font-bold py-6 text-base"
-        >
-          {showAdvancedOptions ? "Hide Options" : "Advanced Options"}
-        </Button>
+        <div className="flex flex-row gap-2 w-full sm:w-auto">
+          <Button
+            onClick={handleSearch}
+            disabled={loading}
+            className="bg-black dark:bg-white text-white dark:text-black font-bold py-6 text-base w-full sm:w-auto"
+          >
+            Search
+          </Button>
+          <Button
+            onClick={toggleAdvancedOptions}
+            className="bg-black dark:bg-white text-white dark:text-black font-bold py-6 text-base w-full sm:w-auto"
+          >
+            {showAdvancedOptions ? "Hide Filters" : "Show Filters"}
+          </Button>
+        </div>
       </div>
 
       {showAdvancedOptions && (
