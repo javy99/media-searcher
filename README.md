@@ -84,6 +84,7 @@ This function makes a GET request to the iTunes Search API, retrieves the result
 
 ## Acknowledgements
 iTunes Search API Documentation
+
 Enjoy building and exploring this app! If you have any questions, feel free to open an issue in the repository.
 
 
