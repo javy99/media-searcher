@@ -82,6 +82,31 @@ const fetchMediaData = async (searchTerm: string) => {
 ```
 This function makes a GET request to the iTunes Search API, retrieves the results, and returns them to be displayed in the UI.
 
+### Extended API Query Parameters
+The API query supports additional parameters to refine your search. Below is an example of how you can customize the API request with various options:
+
+```bash
+https://itunes.apple.com/search?
+  term={searchTerm}&
+  country={countryCode}&
+  media={mediaType}&
+  entity={entityType}&
+  attribute={attributeType}&
+  limit=25&
+  explicit=Yes&
+  lang=en_us
+```
+
+term: The search term (e.g., "Beatles").
+country: The country code (e.g., "US" for United States).
+media: The media type (e.g., "music", "movie", "book").
+entity: The entity type (e.g., "album", "musicTrack").
+attribute: The attribute type (e.g., "artistTerm", "albumTerm").
+limit: The number of results to return (e.g., 25).
+explicit: Whether to include explicit content (e.g., "Yes" or "No").
+lang: The language code (e.g., "en_us").
+Feel free to adjust these parameters based on your search needs.
+
 ## Acknowledgements
 iTunes Search API Documentation
 

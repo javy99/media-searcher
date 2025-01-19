@@ -43,15 +43,3 @@ export async function fetchSearchResults(options: SearchOptions): Promise<Search
     return null;
   }
 }
-
-/*
-https://itunes.apple.com/search?
-  term={searchTerm}&
-  country={countryCode}&
-  media={mediaType}&
-  entity={entityType}&
-  attribute={attributeType}&
-  limit=25&
-  explicit=Yes&
-  lang=en_us
-*/
