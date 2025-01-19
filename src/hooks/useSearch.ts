@@ -18,18 +18,20 @@ const useSearch = () => {
        return;
      }
 
-    const searchResults = await fetchSearchResults({
-      term: searchTerm,
-      explicit: options?.explicit ?? "No",
-      ...options,
-    });
+    try {
+      const searchResults = await fetchSearchResults({
+        term: searchTerm,
+        explicit: options?.explicit ?? "No",
+        ...options,
+      });
 
-    if (searchResults) {
-      setResults(searchResults);
-    } else {
+      setResults(searchResults || []);
+    } catch (err) {
+      console.error(err);
       setError("Failed to fetch search results.");
       setResults([]);
     }
+
     setLoading(false);
   }, [searchTerm]);
 
