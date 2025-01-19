@@ -18,6 +18,7 @@ const SearchResultCard: React.FC<SearchResultCardProps> = ({
   result,
   onClick,
 }) => {
+
   return (
     <div className="cursor-pointer" onClick={onClick}>
       <Card className="bg-white dark:bg-black rounded-md shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col h-full">
