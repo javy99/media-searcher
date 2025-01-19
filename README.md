@@ -112,7 +112,7 @@ limit: The number of results to return (e.g., 25).
 explicit: Whether to include explicit content (e.g., "Yes" or "No").
 
 lang: The language code (e.g., "en_us").
-
+  
 Feel free to adjust these parameters based on your search needs.
 
 ## Acknowledgements
