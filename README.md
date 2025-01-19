@@ -98,13 +98,21 @@ https://itunes.apple.com/search?
 ```
 
 term: The search term (e.g., "Beatles").
+
 country: The country code (e.g., "US" for United States).
+
 media: The media type (e.g., "music", "movie", "book").
+
 entity: The entity type (e.g., "album", "musicTrack").
+
 attribute: The attribute type (e.g., "artistTerm", "albumTerm").
+
 limit: The number of results to return (e.g., 25).
+
 explicit: Whether to include explicit content (e.g., "Yes" or "No").
+
 lang: The language code (e.g., "en_us").
+
 Feel free to adjust these parameters based on your search needs.
 
 ## Acknowledgements
