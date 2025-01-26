@@ -1,18 +1,6 @@
-import { ITunesApiResponse, SearchResult } from "@/types";
+import { ITunesApiResponse, SearchOptions, SearchResult } from "@/types";
 
 const BASE_URL = 'https://itunes.apple.com/search';
-
-export interface SearchOptions {
-  term: string;
-  country?: string;
-  media?: string;
-  entity?: string;
-  attribute?: string;
-  limit?: number;
-  lang?: string;
-  version?: number;
-  explicit: "Yes" | "No";
-}
 
 const buildQueryString = (options: SearchOptions): string => {
   const params = new URLSearchParams();
